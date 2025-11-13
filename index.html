@@ -17,35 +17,11 @@
         /* Custom Styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a; /* Near-black background */
-            color: #e0e0e0; /* Light gray text */
+            background-color: #111827; /* gray-900 */
+            color: #d1d5db; /* gray-300 */
         }
 
-        /* --- Custom Neon/Glow Effects --- */
-        .neon-text {
-            text-shadow:
-                0 0 5px #00bfff,
-                0 0 10px #00bfff,
-                0 0 20px #00bfff,
-                0 0 40px #40cfff,
-                0 0 80px #40cfff;
-        }
-        
-        .neon-text-purple {
-            color: #f4f4f5; /* Bright white-ish */
-            text-shadow:
-                0 0 7px #a78bfa,
-                0 0 10px #a78bfa,
-                0 0 21px #a78bfa,
-                0 0 42px #8b5cf6,
-                0 0 82px #8b5cf6;
-        }
-
-        .neon-border {
-            border: 1px solid #22d3ee;
-            box-shadow: 0 0 5px #22d3ee, 0 0 10px #22d3ee inset;
-        }
-
+        /* --- Simple Card Hover Effect --- */
         .card-hover {
             border: 1px solid #374151; /* gray-700 */
             transition: all 0.3s ease-in-out;
@@ -54,58 +30,7 @@
         .card-hover:hover {
             border-color: #a78bfa; /* violet-400 */
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.1), 0 4px 6px -2px rgba(139, 92, 246, 0.05);
-        }
-
-        /* --- Qubit Animations --- */
-        @keyframes spin-glow {
-            0% {
-                transform: rotate(0deg) scale(1);
-                box-shadow: 0 0 10px #a78bfa;
-            }
-            50% {
-                transform: rotate(180deg) scale(1.1);
-                box-shadow: 0 0 20px #8b5cf6;
-            }
-            100% {
-                transform: rotate(360deg) scale(1);
-                box-shadow: 0 0 10px #a78bfa;
-            }
-        }
-        
-        .qubit-superposition {
-            width: 100px;
-            height: 100px;
-            border: 3px dashed #a78bfa;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: white;
-            animation: spin-glow 3s linear infinite;
-        }
-        
-        .qubit-collapsed {
-            width: 100px;
-            height: 100px;
-            border: 3px solid #22d3ee; /* cyan-400 */
-            background-color: #22d3ee;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            font-weight: 900;
-            color: #0a0a0a;
-            animation: collapse-pop 0.3s ease-out;
-        }
-        
-        @keyframes collapse-pop {
-            0% { transform: scale(0.5); opacity: 0; }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         /* --- Tab Styling --- */
@@ -122,58 +47,63 @@
         .tab-btn:hover:not(.active) {
             background-color: #374151; /* gray-700 */
         }
-        
-        /* --- Scroll Fade-in --- */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
-        /* --- Mobile Menu --- */
-        .menu-icon-line {
-            transition: all 0.3s ease;
+        /* --- Quiz Styles --- */
+        .quiz-question {
+            background-color: #1f2937; /* gray-800 */
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #374151; /* gray-700 */
+            margin-bottom: 1rem;
         }
-        .menu-open .line-1 {
-            transform: translateY(8px) rotate(45deg);
+        .quiz-option {
+            display: block;
+            background-color: #374151; /* gray-700 */
+            padding: 0.75rem 1rem;
+            border-radius: 0.25rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
         }
-        .menu-open .line-2 {
-            opacity: 0;
+        .quiz-option:hover {
+            background-color: #4b5563; /* gray-600 */
         }
-        .menu-open .line-3 {
-            transform: translateY(-8px) rotate(-45deg);
+        .quiz-option input {
+            margin-right: 0.75rem;
         }
-        
+        .quiz-results-correct {
+            color: #34d399; /* emerald-400 */
+            font-weight: bold;
+        }
+        .quiz-results-incorrect {
+            color: #f87171; /* red-400 */
+            font-weight: bold;
+        }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200 overflow-x-hidden">
+<body class="overflow-x-hidden">
 
     <!-- Header / Navigation -->
     <header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">
-                <span class="neon-text-purple">Quantum Computing</span>
+            <a href="#" class="text-2xl font-bold text-violet-400">
+                Quantum Computing
             </a>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-6">
+            <div class="hidden md:flex space-x-6 text-gray-200">
                 <a href="#intro" class="hover:text-violet-400 transition-colors">What is Quantum?</a>
                 <a href="#concepts" class="hover:text-violet-400 transition-colors">Core Concepts</a>
                 <a href="#impact" class="hover:text-violet-400 transition-colors">The Impact</a>
-                <a href="#lab" class="hover:text-violet-400 transition-colors">Quantum Lab</a>
+                <a href="#lab" class="hover:text-violet-400 transition-colors">Visualizing</a>
             </div>
 
             <!-- Mobile Menu Button -->
             <button id="menu-btn" class="md:hidden z-50">
                 <div class="space-y-1.5">
-                    <span class="block w-6 h-0.5 bg-gray-200 menu-icon-line line-1"></span>
-                    <span class="block w-6 h-0.5 bg-gray-200 menu-icon-line line-2"></span>
-                    <span class="block w-6 h-0.5 bg-gray-200 menu-icon-line line-3"></span>
+                    <span class="block w-6 h-0.5 bg-gray-200"></span>
+                    <span class="block w-6 h-0.5 bg-gray-200"></span>
+                    <span class="block w-6 h-0.5 bg-gray-200"></span>
                 </div>
             </button>
         </nav>
@@ -183,23 +113,20 @@
             <a href="#intro" class="mobile-menu-link hover:text-violet-400">What is Quantum?</a>
             <a href="#concepts" class="mobile-menu-link hover:text-violet-400">Core Concepts</a>
             <a href="#impact" class="mobile-menu-link hover:text-violet-400">The Impact</a>
-            <a href="#lab" class="mobile-menu-link hover:text-violet-400">Quantum Lab</a>
+            <a href="#lab" class="mobile-menu-link hover:text-violet-400">Visualizing</a>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="h-[90vh] flex items-center justify-center text-center bg-black overflow-hidden relative">
-            <!-- Background animated grid -->
-            <div class="absolute inset-0 z-0 opacity-20" style="background-image: linear-gradient(to right, #8b5cf6 1px, transparent 1px), linear-gradient(to bottom, #8b5cf6 1px, transparent 1px); background-size: 40px 40px;"></div>
-            
+        <section id="hero" class="h-[80vh] flex items-center justify-center text-center bg-gray-900 relative">
             <div class="z-10 p-6">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6">
-                    <span class="neon-text-purple">Unlock</span>
+                <h1 class="text-5xl md:text-7xl font-black text-white mb-6">
+                    <span class="text-violet-400">Unlock</span>
                     <span class="block">a New Reality</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-                    Discover the mind-bending world of quantum computing, where bits become qubits and the impossible becomes possible.
+                    Discover the world of quantum computing, where bits become qubits and the impossible becomes possible.
                 </p>
                 <a href="#intro" class="px-8 py-3 bg-violet-600 text-white font-semibold rounded-lg shadow-lg shadow-violet-600/30 hover:bg-violet-500 transition-all transform hover:scale-105">
                     Start the Journey
@@ -207,190 +134,30 @@
             </div>
         </section>
 
-        <!-- Section 1: What is Quantum? -->
-        <section id="intro" class="py-20 lg:py-32 fade-in-section">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">From <span class="text-cyan-400">Bits</span> to <span class="text-violet-400">Qubits</span></h2>
-                    <p class="text-lg text-gray-400">
-                        Classical computers use "bits" — a state that is either a 0 OR a 1, like a light switch. Quantum computers use "qubits," which can be a 0, a 1, or <span class="font-bold text-white">both at the same time</span>. <span class="block mt-2">While classical computers solve problems one step at a time, qubits allow quantum computers to explore millions of possibilities at once.</span> This one simple change unlocks exponential power.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-                    <!-- Classical Bit Card -->
-                    <div class="bg-gray-800 p-8 rounded-xl card-hover">
-                        <h3 class="text-2xl font-bold text-white text-center mb-6">Classical Bit</h3>
-                        <div class="flex justify-center items-center h-24 space-x-4">
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-gray-600 rounded-full flex items-center justify-center text-4xl font-black">0</div>
-                                <span class="mt-2 block font-medium">OFF</span>
-                            </div>
-                            <span class="text-2xl font-light text-gray-400">OR</span>
-                            <div class="text-center">
-                                <div class="w-20 h-20 bg-cyan-400 text-gray-900 rounded-full flex items-center justify-center text-4xl font-black">1</div>
-                                <span class="mt-2 block font-medium">ON</span>
-                            </div>
-                        </div>
-                        <p class="text-center mt-6 text-gray-400">A bit holds a single value. Four bits can store just <span class="text-white font-bold">one</span> of 16 possible combinations at a time.</p>
-                    </div>
-
-                    <!-- Quantum Qubit Card -->
-                    <div class="bg-gray-800 p-8 rounded-xl card-hover">
-                        <h3 class="text-2xl font-bold text-white text-center mb-6">Quantum Qubit</h3>
-                        <div class="flex justify-center items-center h-24 space-x-4">
-                            <div class="text-center">
-                                <div class="w-20 h-20 border-4 border-dashed border-violet-400 rounded-full flex items-center justify-center text-4xl font-black text-violet-400">?</div>
-                                <span class="mt-2 block font-medium">0 AND 1</span>
-                            </div>
-                        </div>
-                        <p class="text-center mt-6 text-gray-400">A qubit exists in superposition. Four qubits can store <span class="text-white font-bold">all 16</span> combinations at the same time.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: Core Concepts -->
-        <section id="concepts" class="py-20 lg:py-32 bg-black fade-in-section">
-            <div class="container mx-auto px-6">
-                <div class="max-w-3xl mx-auto text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Quantum "Magic"</h2>
-                    <p class="text-lg text-gray-400">
-                        Quantum mechanics operates on a few "spooky" principles. Here’s a simple breakdown of the most important ones.
-                    </p>
-                </div>
-
-                <!-- Tab Buttons -->
-                <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4 mb-8">
-                    <button class="tab-btn active px-6 py-3 rounded-lg font-semibold" data-tab="superposition">
-                        1. Superposition
-                    </button>
-                    <button class="tab-btn px-6 py-3 rounded-lg font-semibold" data-tab="entanglement">
-                        2. Entanglement
-                    </button>
-                    <button class="tab-btn px-6 py-3 rounded-lg font-semibold" data-tab="interference">
-                        3. Interference
-                    </button>
-                </div>
-
-                <!-- Tab Content -->
-                <div class="max-w-5xl mx-auto">
-                    <!-- Superposition Content -->
-                    <div id="superposition" class="tab-content grid md:grid-cols-2 gap-8 items-center">
-                        <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-bold text-violet-400 mb-4">Superposition</h3>
-                            <p class="text-lg mb-4">
-                                This is the core quantum property. Instead of being just a 0 or a 1, a qubit exists in a rich combination of both states simultaneously, with a certain probability for each. This allows it to process vastly more information than a classical bit.
-                            </p>
-                            <p class="text-gray-400">
-                                <span class="font-bold text-white">Analogy: A Spinning Coin.</span> While the coin is in the air, it's neither heads nor tails. It's in a "superposition" of both. Only when it lands (when we "measure" it) does it collapse into a single state.
-                            </p>
-                        </div>
-                        <div class="flex justify-center items-center">
-                            <img src="https://placehold.co/400x300/111827/a78bfa?text=Spinning+Coin\n(Superposition)" alt="Spinning coin representing superposition" class="rounded-lg shadow-lg">
-                        </div>
-                    </div>
-
-                    <!-- Entanglement Content -->
-                    <div id="entanglement" class="tab-content hidden grid md:grid-cols-2 gap-8 items-center">
-                        <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-bold text-violet-400 mb-4">Entanglement</h3>
-                            <p class="text-lg mb-4">
-                                Albert Einstein called this "spooky action at a distance." You can link two or more qubits together in a way that is impossible in classical physics. Their states remain connected, regardless of the distance separating them. Measuring one instantly influences the state of the other, creating a perfectly correlated system.
-                            </p>
-                            <p class="text-gray-400">
-                                <span class="font-bold text-white">Analogy: Magic Coins.</span> You have two coins that are magically linked. You give one to a friend who travels to the moon. The instant you look at your coin and see "heads," you know *for certain* your friend's coin is "tails."
-                            </p>
-                        </div>
-                        <div class="flex justify-center items-center">
-                             <img src="https://placehold.co/400x300/111827/a78bfa?text=Two+Linked+Coins\n(Entanglement)" alt="Two linked coins representing entanglement" class="rounded-lg shadow-lg">
-                        </div>
-                    </div>
-
-                    <!-- Interference Content -->
-                    <div id="interference" class="tab-content hidden grid md:grid-cols-2 gap-8 items-center">
-                        <div class="text-center md:text-left">
-                            <h3 class="text-2xl font-bold text-violet-400 mb-4">Interference</h3>
-                            <p class="text-lg mb-4">
-                                Just like waves in a pond can add up to create bigger waves (constructive interference) or cancel each other out (destructive interference), quantum states also have wave-like properties. Quantum algorithms cleverly use this to amplify the probability of finding the correct answer while canceling out all the incorrect ones.
-                            </p>
-                            <p class="text-gray-400">
-                                <span class="font-bold text-white">Analogy: Noise-Canceling Headphones.</span> They work by creating an "anti-noise" wave that perfectly cancels out the real noise. Quantum interference does the same for calculations, "canceling" wrong answers.
-                            </p>
-                        </div>
-                        <div class="flex justify-center items-center">
-                             <img src="https://placehold.co/400x300/111827/a78bfa?text=Sound+Waves\n(Interference)" alt="Waveforms canceling each other out, representing interference" class="rounded-lg shadow-lg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Section 3: The Impact -->
-        <section id="impact" class="py-20 lg:py-32 fade-in-section">
-            <div class="container mx-auto px-6">
-                <div class="max-w-3xl mx-auto text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Why It Will Change Everything</h2>
-                    <p class="text-lg text-gray-400">
-                        This isn't just about faster computers. It's about solving problems we currently believe are impossible.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Impact Card 1 -->
-                    <div class="bg-gray-800 p-8 rounded-xl card-hover">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Medicine & Materials</h3>
-                        <p class="text-gray-300">
-                            Simulate molecules with perfect accuracy, a task too complex for any classical computer. This could let us discover new life-saving drugs by understanding diseases at a molecular level or invent new materials for things like hyper-efficient batteries.
-                        </p>
-                    </div>
-                    
-                    <!-- Impact Card 2 -->
-                    <div class="bg-gray-800 p-8 rounded-xl card-hover">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Cryptography & Security</h3>
-                        <p class="text-gray-300">
-                            Many of today's security protocols (like those for banking) are based on problems that are too hard for classical computers to solve. Quantum computers will be able to solve them, making our current data vulnerable. This "quantum threat" is also driving the creation of new, unhackable "quantum-resistant" encryption.
-                        </p>
-                    </div>
-
-                    <!-- Impact Card 3 -->
-                    <div class="bg-gray-800 p-8 rounded-xl card-hover">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Artificial Intelligence</h3>
-                        <p class="text-gray-300">
-                            Drastically speed up machine learning by allowing AI to analyze massive, complex datasets in new ways. This could lead to hyper-intelligent AI that can find optimal solutions for global financial models, streamline global logistics, or discover new patterns in climate change data.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: Quantum Lab -->
-        <section id="lab" class="py-20 lg:py-32 bg-black fade-in-section">
+        <!-- Section 5: AI-Generated Quiz -->
+        <section id="quiz" class="py-20 lg:py-32 bg-gray-900"> <!-- Changed background for contrast -->
             <div class="container mx-auto px-6 text-center">
                 <div class="max-w-3xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Try It Yourself: The Qubit Lab</h2>
-                    <p class="text-lg text-gray-400 mb-12">
-                        A qubit exists in superposition... until you measure it. When measured, its state "collapses" to either a 0 or a 1.
-                        Click the button below to measure our virtual qubit.
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">AI-Generated Quiz</h2>
+                    <p class="text-lg text-gray-400 mb-8">
+                        Test your knowledge! Our AI will generate a few questions for you based on what you've just learned.
                     </p>
-                </div>
+                    
+                    <button id="generate-quiz-btn" class="px-8 py-3 bg-cyan-600 text-white font-semibold rounded-lg shadow-lg shadow-cyan-600/30 hover:bg-cyan-500 transition-all transform hover:scale-105">
+                        Generate Quiz
+                    </button>
 
-                <!-- Interactive Qubit -->
-                <div class="flex flex-col items-center">
-                    <div id="qubit-visual-container" class="mb-8">
-                        <!-- This div will be replaced by JS -->
-                        <div id="qubit-visual" class="qubit-superposition">?</div>
+                    <div id="quiz-container" class="mt-8 text-left hidden">
+                        <!-- Questions will be injected here by JS -->
                     </div>
-                    
-                    <button id="measure-btn" class="px-8 py-3 bg-cyan-500 text-gray-900 font-bold rounded-lg shadow-lg shadow-cyan-500/30 hover:bg-cyan-400 transition-all transform hover:scale-105">
-                        Measure Qubit
-                    </button>
-                    
-                    <button id="reset-btn" class="hidden mt-4 px-6 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600 transition-all">
-                        Reset
+
+                    <button id="submit-quiz-btn" class="hidden mt-8 px-8 py-3 bg-violet-600 text-white font-semibold rounded-lg shadow-lg shadow-violet-600/30 hover:bg-violet-500 transition-all">
+                        Submit Quiz
                     </button>
 
-                    <p id="qubit-message" class="text-xl mt-6 h-6"></p>
+                    <div id="quiz-results" class="mt-8 text-xl">
+                        <!-- Results will be shown here -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -415,7 +182,6 @@
 
             const toggleMenu = () => {
                 mobileMenu.classList.toggle('hidden');
-                menuBtn.classList.toggle('menu-open');
                 // Prevent scrolling when menu is open
                 document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
             };
@@ -450,86 +216,202 @@
                 });
             });
 
-            // --- Qubit Lab Interaction ---
-            const measureBtn = document.getElementById('measure-btn');
-            const resetBtn = document.getElementById('reset-btn');
-            const visualContainer = document.getElementById('qubit-visual-container');
-            const qubitMessage = document.getElementById('qubit-message');
-            
-            const createSuperpositionVisual = () => {
-                const qubitDiv = document.createElement('div');
-                qubitDiv.id = 'qubit-visual';
-                qubitDiv.className = 'qubit-superposition';
-                qubitDiv.textContent = '?';
-                return qubitDiv;
-            };
-            
-            const createCollapsedVisual = (state) => {
-                const qubitDiv = document.createElement('div');
-                qubitDiv.id = 'qubit-visual';
-                qubitDiv.className = 'qubit-collapsed';
-                qubitDiv.textContent = state;
-                return qubitDiv;
-            };
+            // All "overpowered" JS (IntersectionObserver, Qubit Lab) has been removed.
 
-            measureBtn.addEventListener('click', () => {
-                // 1. Determine the collapsed state
-                const result = Math.random() < 0.5 ? '0' : '1';
+            // --- AI Quiz Section ---
+            const generateBtn = document.getElementById('generate-quiz-btn');
+            const submitBtn = document.getElementById('submit-quiz-btn');
+            const quizContainer = document.getElementById('quiz-container');
+            const quizResults = document.getElementById('quiz-results');
+
+            let quizData = []; // To store the generated quiz questions and answers
+
+            // 1. Function to call Gemini API
+            async function generateQuiz() {
+                generateBtn.disabled = true;
+                quizResults.textContent = 'Generating quiz, please wait...';
+                quizContainer.innerHTML = ''; // Clear old quiz
+                submitBtn.classList.add('hidden');
+
+                const systemPrompt = `You are a helpful AI assistant creating a quiz.
+You will generate a short, 3-question multiple-choice quiz about Quantum Computing.
+The questions must be based on the content of the webpage which includes sections on:
+- What is Quantum? (Bits vs Qubits)
+- Core Concepts (Superposition, Entanglement, Interference)
+- The Impact (Medicine, Cryptography, AI)
+- Visualizing a Qubit (Superposition vs Collapsed)
+
+The questions should be clear, beginner-friendly, and suitable for someone under 18.
+Each question must have 3 multiple-choice options.
+One of the options must be the correct answer.
+Return ONLY the JSON object as specified in the schema.`;
                 
-                // 2. Create the new visual
-                const collapsedVisual = createCollapsedVisual(result);
-                
-                // 3. Replace the old visual
-                const oldVisual = document.getElementById('qubit-visual');
-                visualContainer.replaceChild(collapsedVisual, oldVisual);
-                
-                // 4. Show message and update buttons
-                qubitMessage.textContent = `You measured: ${result}! The superposition has collapsed.`;
-                measureBtn.classList.add('hidden');
-                resetBtn.classList.remove('hidden');
-            });
-            
-            resetBtn.addEventListener('click', () => {
-                // 1. Create the superposition visual
-                const superpositionVisual = createSuperpositionVisual();
-                
-                // 2. Replace the collapsed visual
-                const oldVisual = document.getElementById('qubit-visual');
-                visualContainer.replaceChild(superpositionVisual, oldVisual);
+                const userQuery = "Generate the 3-question quiz now.";
 
-                // 3. Reset message and buttons
-                qubitMessage.textContent = '';
-                measureBtn.classList.remove('hidden');
-                resetBtn.classList.add('hidden');
-            });
-
-            // --- Scroll Fade-in Effect ---
-            const faders = document.querySelectorAll('.fade-in-section');
-
-            const appearOptions = {
-                threshold: 0.1, // Trigger when 10% of the element is visible
-                rootMargin: "0px 0px -50px 0px" // Start loading 50px before it's in view
-            };
-
-            const appearOnScroll = new IntersectionObserver(
-                (entries, observer) => {
-                    entries.forEach(entry => {
-                        if (!entry.isIntersecting) {
-                            return;
+                const quizSchema = {
+                    type: "OBJECT",
+                    properties: {
+                        "quiz": {
+                            "type": "ARRAY",
+                            "items": {
+                                "type": "OBJECT",
+                                "properties": {
+                                    "question": { "type": "STRING", "description": "The quiz question." },
+                                    "options": {
+                                        "type": "ARRAY",
+                                        "description": "An array of 3 string options.",
+                                        "items": { "type": "STRING" }
+                                    },
+                                    "correctAnswer": { "type": "STRING", "description": "The exact text of the correct option." }
+                                },
+                                "required": ["question", "options", "correctAnswer"]
+                            }
                         }
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    });
-                }, 
-                appearOptions
-            );
+                    },
+                    required: ["quiz"]
+                };
 
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
+                const payload = {
+                    contents: [
+                        { role: "user", parts: [{ text: userQuery }] }
+                    ],
+                    systemInstruction: {
+                        parts: [{ text: systemPrompt }]
+                    },
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: quizSchema,
+                        temperature: 0.8, // Add some creativity
+                        topP: 0.9
+                    }
+                };
+
+                const apiKey = "AIzaSyDApEPjAOmc7EcnQc2RWxOTygF6P-HO4xk"; // API key is left blank
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+                try {
+                    // Exponential backoff setup
+                    let response;
+                    let delay = 1000;
+                    for (let i = 0; i < 5; i++) { // Retry up to 5 times
+                        response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.status === 429 || response.status >= 500) {
+                            // Wait and retry for rate limiting or server errors
+                            await new Promise(res => setTimeout(res, delay));
+                            delay *= 2;
+                        } else if (response.ok) {
+                            break; // Success
+                        } else {
+                            // Other client-side errors
+                            throw new Error(`API error: ${response.statusText}`);
+                        }
+                    }
+
+                    if (!response || !response.ok) {
+                        throw new Error(`Failed to fetch quiz after retries. Status: ${response ? response.status : 'unknown'}`);
+                    }
+
+                    const result = await response.json();
+
+                    const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (!jsonText) {
+                        throw new Error("Invalid response from AI. No content part found.");
+                    }
+
+                    const parsedData = JSON.parse(jsonText);
+                    
+                    if (parsedData.quiz && parsedData.quiz.length > 0) {
+                        quizData = parsedData.quiz;
+                        renderQuiz(quizData);
+                        quizResults.textContent = ''; // Clear loading message
+                        generateBtn.classList.add('hidden'); // Hide generate button
+                        submitBtn.classList.remove('hidden'); // Show submit button
+                        quizContainer.classList.remove('hidden'); // Show quiz
+                    } else {
+                        throw new Error("AI returned empty or invalid quiz data.");
+                    }
+
+                } catch (error) {
+                    console.error("Error generating quiz:", error);
+                    quizResults.textContent = 'Sorry, we couldn\'t generate a quiz. Please try again later.';
+                    generateBtn.disabled = false;
+                }
+            }
+
+            // 2. Function to render the quiz
+            function renderQuiz(questions) {
+                quizContainer.innerHTML = ''; // Clear previous quiz
+                questions.forEach((q, index) => {
+                    const questionElement = document.createElement('div');
+                    questionElement.className = 'quiz-question';
+                    
+                    let optionsHtml = '';
+                    // Randomize options order for display
+                    const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+
+                    shuffledOptions.forEach((option) => {
+                        // Sanitize option value to be safe for HTML attribute
+                        const optionValue = option.replace(/"/g, '&quot;');
+                        optionsHtml += `
+                            <label class="quiz-option">
+                                <input type="radio" name="question-${index}" value="${optionValue}">
+                                ${option}
+                            </label>
+                        `;
+                    });
+
+                    questionElement.innerHTML = `
+                        <p class="font-bold text-lg mb-4">${index + 1}. ${q.question}</p>
+                        ${optionsHtml}
+                    `;
+                    quizContainer.appendChild(questionElement);
+                });
+            }
+
+            // 3. Function to check answers
+            function checkAnswers() {
+                let score = 0;
+                quizResults.innerHTML = ''; // Clear previous results
+                
+                quizData.forEach((q, index) => {
+                    const selectedOption = document.querySelector(`input[name="question-${index}"]:checked`);
+                    const resultElement = document.createElement('div');
+                    resultElement.className = 'mb-2';
+
+                    if (selectedOption) {
+                        if (selectedOption.value === q.correctAnswer) {
+                            score++;
+                            resultElement.innerHTML = `Question ${index + 1}: <span class="quiz-results-correct">Correct!</span>`;
+                        } else {
+                            resultElement.innerHTML = `Question ${index + 1}: <span class="quiz-results-incorrect">Incorrect.</span> The correct answer was: "${q.correctAnswer}"`;
+                        }
+                    } else {
+                        resultElement.innerHTML = `Question ${index + 1}: <span class="quiz-results-incorrect">No answer selected.</span> The correct answer was: "${q.correctAnswer}"`;
+                    }
+                    quizResults.appendChild(resultElement);
+                });
+
+                const scoreElement = document.createElement('p');
+                scoreElement.className = 'text-2xl font-bold mt-6';
+                scoreElement.textContent = `You scored ${score} out of ${quizData.length}!`;
+                quizResults.prepend(scoreElement);
+
+                submitBtn.classList.add('hidden');
+                generateBtn.classList.remove('hidden'); // Show generate button again
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Generate New Quiz'; // Change button text
+            }
+
+            // 4. Add event listeners
+            generateBtn.addEventListener('click', generateQuiz);
+            submitBtn.addEventListener('click', checkAnswers);
 
         });
     </script>
 </body>
-
 </html>
