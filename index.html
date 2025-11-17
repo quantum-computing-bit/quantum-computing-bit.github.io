@@ -57,13 +57,13 @@
     <!-- Header / Navigation -->
     <header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-violet-400">
+            <a href="#" class="text-2xl font-bold text-violet-400 flex items-center space-x-3">
                 <!-- Replaced text with Sanskriti School logo -->
                 <img src="/logo.jpg" 
                      alt="Sanskriti School Undri Logo" 
                      class="h-12 w-auto"
-                     onerror="this.style.display='none'; this.nextSibling.textContent='Sanskriti School';">
-                <span class="hidden">Quantum Computing</span> <!-- Fallback text -->
+                     onerror="this.style.display='none'; this.nextElementSibling.textContent='Sanskriti School'; this.nextElementSibling.classList.remove('hidden');">
+                <span class="">Quantum Computing</span> <!-- Site Title -->
             </a>
             
             <!-- Desktop Menu -->
