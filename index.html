@@ -48,7 +48,46 @@
             background-color: #374151; /* gray-700 */
         }
 
-        /* --- Quiz Styles Removed --- */
+        /* --- Quiz Styles (Restored) --- */
+        .quiz-question {
+            background-color: #1f2937; /* gray-800 */
+            border: 1px solid #374151; /* gray-700 */
+        }
+        
+        .quiz-option {
+            background-color: #374151; /* gray-700 */
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #a78bfa; /* violet-400 */
+        }
+
+        .quiz-option.selected {
+            background-color: #4f46e5; /* indigo-600 */
+            border-color: #c7d2fe; /* indigo-200 */
+            color: white;
+        }
+
+        /* Styles added after submitting */
+        .quiz-option.correct {
+            background-color: #059669; /* green-600 */
+            border-color: #6ee7b7; /* green-300 */
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            background-color: #dc2626; /* red-600 */
+            border-color: #fca5a5; /* red-300 */
+            color: white;
+        }
+
+        #quiz-result {
+            background-color: #1f2937; /* gray-800 */
+            border-top: 4px solid #8b5cf6; /* violet-500 */
+        }
 
     </style>
 </head>
@@ -72,6 +111,7 @@
                 <a href="#concepts" class="hover:text-violet-400 transition-colors">Core Concepts</a>
                 <a href="#impact" class="hover:text-violet-400 transition-colors">The Impact</a>
                 <a href="#lab" class="hover:text-violet-400 transition-colors">Visualizing</a>
+                <a href="#quiz" class="hover:text-violet-400 transition-colors">Quiz</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -90,6 +130,7 @@
             <a href="#concepts" class="mobile-menu-link hover:text-violet-400">Core Concepts</a>
             <a href="#impact" class="mobile-menu-link hover:text-violet-400">The Impact</a>
             <a href="#lab" class="mobile-menu-link hover:text-violet-400">Visualizing</a>
+            <a href="#quiz" class="mobile-menu-link hover:text-violet-400">Quiz</a>
         </div>
     </header>
 
@@ -189,7 +230,6 @@
                                 <span class="font-bold text-white">Analogy: A Spinning Coin.</span> While in the air, it's neither heads nor tails. Only when it lands (is "measured") does it pick one state.
                             </p>
                         </div>
-                        <!-- Image Removed -->
                     </div>
 
                     <!-- Entanglement Content -->
@@ -203,7 +243,6 @@
                                 <span class="font-bold text-white">Analogy: Magic Coins.</span> If you know your linked coin is "heads," you instantly know your friend's is "tails," even on the moon.
                             </p>
                         </div>
-                        <!-- Image Removed -->
                     </div>
 
                     <!-- Interference Content -->
@@ -217,7 +256,6 @@
                                 <span class="font-bold text-white">Analogy: Noise-Canceling Headphones.</span> They create an "anti-noise" wave to cancel the real noise, leaving only silence (or the right answer).
                             </p>
                         </div>
-                        <!-- Image Removed -->
                     </div>
                 </div>
             </div>
@@ -277,7 +315,7 @@
                     <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
                         <h3 class="text-xl font-bold text-violet-400 mb-6">1. Superposition (Before Measuring)</h3>
                         <div class="flex justify-center items-center mb-4">
-                            <div class="w-24 h-24 border-4 border-dashed border-violet-40E0 rounded-full flex items-center justify-center text-5xl font-black text-violet-400">?</div>
+                            <div class="w-24 h-24 border-4 border-dashed border-violet-400 rounded-full flex items-center justify-center text-5xl font-black text-violet-400">?</div>
                         </div>
                         <p class="text-gray-400">The qubit is in a "blurry" state of both 0 and 1 at the same time.</p>
                     </div>
@@ -295,7 +333,65 @@
             </div>
         </section>
 
-        <!-- Section 5: Static Quiz (Removed) -->
+        <!-- Section 5: Static Quiz (Restored) -->
+        <section id="quiz" class="py-20 lg:py-32">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Test Your Knowledge</h2>
+                    <p class="text-lg text-gray-400">
+                        See how much you've learned about the strange world of quantum computing.
+                    </p>
+                </div>
+
+                <div class="max-w-2xl mx-auto">
+                    <!-- Question 1 -->
+                    <div class="quiz-question p-6 rounded-xl mb-8">
+                        <p class="text-xl font-semibold text-white mb-4">1. What is the fundamental unit of quantum computing?</p>
+                        <div class="space-y-3">
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q1" data-answer="a">Bit</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q1" data-answer="b">Qubit</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q1" data-answer="c">Byte</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q1" data-answer="d">Atom</div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="quiz-question p-6 rounded-xl mb-8">
+                        <p class="text-xl font-semibold text-white mb-4">2. The "spinning coin" analogy describes which quantum principle?</p>
+                        <div class="space-y-3">
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q2" data-answer="a">Entanglement</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q2" data-answer="b">Interference</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q2" data-answer="c">Superposition</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q2" data-answer="d">Collapse</div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="quiz-question p-6 rounded-xl mb-8">
+                        <p class="text-xl font-semibold text-white mb-4">3. Which principle allows linked qubits to instantly affect each other, regardless of distance?</p>
+                        <div class="space-y-3">
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q3" data-answer="a">Superposition</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q3" data-answer="b">Interference</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q3" data-answer="c">Quantum Tunneling</div>
+                            <div class="quiz-option p-4 rounded-lg text-gray-200" data-question="q3" data-answer="d">Entanglement</div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button id="submit-quiz" class="px-8 py-3 bg-violet-600 text-white font-semibold rounded-lg shadow-lg shadow-violet-600/30 hover:bg-violet-500 transition-all transform hover:scale-105">
+                            Check Answers
+                        </button>
+                    </div>
+
+                    <!-- Quiz Result -->
+                    <div id="quiz-result" class="mt-12 p-8 rounded-xl text-center hidden">
+                        <h3 id="quiz-score" class="text-3xl font-bold text-white mb-4"></h3>
+                        <p id="quiz-message" class="text-lg text-gray-300"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -351,7 +447,84 @@
                 });
             });
 
-            // --- Static Quiz Section (Removed) ---
+            // --- Static Quiz Section (Restored) ---
+            const correctAnswers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'd'
+            };
+
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            const submitButton = document.getElementById('submit-quiz');
+            const quizResult = document.getElementById('quiz-result');
+            const quizScore = document.getElementById('quiz-score');
+            const quizMessage = document.getElementById('quiz-message');
+            
+            let selectedAnswers = {};
+            let quizSubmitted = false;
+
+            // Handle option selection
+            quizOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    if (quizSubmitted) return; // Don't allow changes after submission
+
+                    const question = option.getAttribute('data-question');
+                    const answer = option.getAttribute('data-answer');
+
+                    // Store selection
+                    selectedAnswers[question] = answer;
+
+                    // Update visual selection
+                    document.querySelectorAll(`.quiz-option[data-question="${question}"]`).forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                });
+            });
+
+            // Handle quiz submission
+            submitButton.addEventListener('click', () => {
+                if (quizSubmitted) return; // Prevent re-submission
+                quizSubmitted = true;
+                
+                let score = 0;
+                const totalQuestions = Object.keys(correctAnswers).length;
+
+                // Check answers
+                for (const question in correctAnswers) {
+                    const correctAnswer = correctAnswers[question];
+                    const selectedAnswer = selectedAnswers[question];
+
+                    const correctOption = document.querySelector(`.quiz-option[data-question="${question}"][data-answer="${correctAnswer}"]`);
+                    
+                    if (selectedAnswer === correctAnswer) {
+                        score++;
+                        correctOption.classList.add('correct');
+                    } else if (selectedAnswer) {
+                        const incorrectOption = document.querySelector(`.quiz-option[data-question="${question}"][data-answer="${selectedAnswer}"]`);
+                        incorrectOption.classList.add('incorrect');
+                        correctOption.classList.add('correct'); // Also show the correct one
+                    } else {
+                        // No answer selected, just show the correct one
+                        correctOption.classList.add('correct');
+                    }
+                }
+
+                // Display results
+                quizScore.textContent = `You scored ${score} out of ${totalQuestions}!`;
+                if (score === totalQuestions) {
+                    quizMessage.textContent = "Perfect! You're a quantum expert!";
+                } else if (score >= totalQuestions / 2) {
+                    quizMessage.textContent = "Great job! You've got the basics down.";
+                } else {
+                    quizMessage.textContent = "Good start! Review the sections and try again.";
+                }
+                
+                quizResult.classList.remove('hidden');
+                submitButton.textContent = 'Answers Submitted';
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+            });
 
         });
     </script>
